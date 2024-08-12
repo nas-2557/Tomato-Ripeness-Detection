@@ -1,0 +1,31 @@
+ripe:
+ train: 1975
+ val: 220
+ total: 2195
+
+unripe: 
+ train: 1585
+ val: 97
+ total: 1682
+
+90/5/5 split
+ ripe: 
+  train: 1975
+  test: 110
+  validation: 110
+
+unripe:
+ train: 1513
+ test: 84
+ validation: 85
+
+current split
+ripe: 
+  train: 1975
+  test: 110
+  validation: 110
+
+unripe:
+ train: 1585
+ test: 84
+ validation: 85
