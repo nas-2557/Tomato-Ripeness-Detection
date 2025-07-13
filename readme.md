@@ -1,5 +1,31 @@
 \- N. Abinash, Partheban KV
 
+# Tomato Ripeness Detection Using Transfer Learning
+
+This project implements a tomato ripeness classification model using transfer learning. The objective is to classify tomatoes into different stages of ripeness based on images, supporting potential applications in agriculture, food quality control, and supply chain automation.
+
+## Overview
+
+The approach uses a pre-trained VGG16 model as a feature extractor. Features from the penultimate layer are passed into a Support Vector Machine (SVM) classifier, leveraging NVIDIA's cuML library for GPU-accelerated training. The model is trained and evaluated on a labeled dataset of tomato images, each annotated with its ripeness level.
+
+## Features
+
+- Transfer learning with VGG16 for robust feature extraction
+- SVM classifier trained on top of deep features
+- Dataset preprocessing with image augmentation
+- Clean separation of training, validation, and test sets
+- Support for GPU acceleration using cuML
+- End-to-end training and evaluation pipeline
+
+## Technologies
+
+- Python
+- TensorFlow / Keras
+- cuML (RAPIDS.ai)
+- scikit-learn
+- NumPy, OpenCV
+- Google Colab (for experimentation)
+
 ### Dataset: 
 - Taken from kaggle (https://www.kaggle.com/datasets/enalis/tomatoes-dataset)
 - Contains 7226 images of tomatoes in four different states: Unripe, Ripe, Old, and Damaged.
@@ -15,19 +41,17 @@
 	 Test: 84
 	 Validation: 85
 
-### Model:
--  The model is VGG16 connected with a Multilayer Perceptron block which consists of a fully connected layer and an output layer.
-- Images of size 224 x 224 with 3 channels are fed into the frozen convolutional layers of VGG16. This is then fed into the last two unfrozen convolutional layers for fine tuning. This is connected to a MLP block.
-- The output layer has two nodes (for ripe and unripe) with softmax activation function.
-- Hyperparameters:
-	- Drop Out: 0.3
-	- Total Epochs:100
-	- Early Stopping: 20
-	- Optimizer: Adam
-	- BatchSize: 16
-	- Initial Learning Rate: 1e-3
+## Model Architecture
+
+- **Feature extractor**: Pre-trained VGG16 with frozen convolutional layers
+- **Classifier**: cuML SVM trained on flattened deep feature vectors
+
+This hybrid design leverages the visual feature power of convolutional networks with the simplicity and speed of SVM classification.
+
+## Results
+
+The model achieved high classification accuracy on the held-out test set. Evaluation was conducted using standard metrics including accuracy and confusion matrix analysis.
+
 - This model is based on this existing paper: https://www.ijisae.org/index.php/IJISAE/article/view/2538/1121
 
 
-### Next Step/ Suggestions:
-- Variation in the model to make it a novel approach.
